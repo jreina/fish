@@ -138,5 +138,23 @@ describe('kleisli', function() {
 
       expect(actual).to.eq(expected);
     });
+
+    it('Should exemplify a real-ish but still contrived example from README.', async function() {
+      const getUserById = _id =>
+        Promise.resolve({ _id, name: 'Susan', jobId: 2 });
+      const getJobById = _id =>
+        Promise.resolve({ _id, name: 'Rattlesnake Groomer' });
+      const prop = key => obj => obj[key];
+
+      const getJobByUserId = pipeP(
+        getUserById,
+        prop('jobId'),
+        getJobById,
+        prop('name')
+      );
+      const actual = await getJobByUserId(10);
+      const expected = 'Rattlesnake Groomer';
+      expect(actual).to.eq(expected);
+    });
   });
 });

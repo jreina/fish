@@ -16,12 +16,27 @@ const f = x => Promise.resolve(x + 1);
 const g = x => Promise.resolve(x * 2);
 
 const h = compose('then')(f, g);
-await h(10)
+await h(10);
 // <- 21
 
 const j = pipe('then')(f, g);
-await h(10)
+await h(10);
 // <- 22
 ```
 
-Each function accepts an array of functions that return either a value or an object with a method that matches the `bindKey` parameter given. Each function can accept any number of functions to compose.
+In the _real world_, you would probably use these functions like this:
+```javascript
+const { pipe } = require('fish-operator');
+const pipeP = pipe('then');
+const prop = key => obj => obj[key];
+
+// Fictitious Promise-returning API functions...
+const getUserById = _id => Promise.resolve({ _id, name: 'Susan', jobId: 2 });
+const getJobById = _id => Promise.resolve({ _id, name: 'Rattlesnake Groomer' });
+
+const getJobByUserId = pipeP(getUserById, prop('jobId'), getJobById, prop('name'));
+await getJobByUserId(10);
+// <- 'Rattlesnake Groomer'
+```
+
+Each function accepts any number of functions that return either a value or an object with a method that matches the `bindKey` parameter given.
