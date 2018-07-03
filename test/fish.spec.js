@@ -9,7 +9,7 @@ describe('kleisli', function() {
   const g = x => Promise.resolve(x * 2);
   const w = x => Promise.resolve(x * x);
   describe('#compose', function() {
-    it('Should compose two promise-returning functions', async function() {
+    it('Should compose two promise-returning functions.', async function() {
       const h = composeP(
         f,
         g
@@ -41,7 +41,7 @@ describe('kleisli', function() {
       expect(actual).to.eq(expected);
     });
 
-    it('Should compose one promise-returning function with one primitive-returning function', async function() {
+    it('Should compose one promise-returning function with one primitive-returning function.', async function() {
       const h = composeP(
         f,
         e
@@ -75,7 +75,7 @@ describe('kleisli', function() {
   });
 
   describe('#pipe', function() {
-    it('Should pipe two promise-returning functions', async function() {
+    it('Should pipe two promise-returning functions.', async function() {
       const h = pipeP(
         f,
         g
@@ -107,7 +107,7 @@ describe('kleisli', function() {
       expect(actual).to.eq(expected);
     });
 
-    it('Should pipe one promise-returning function with one primitive-returning function', async function() {
+    it('Should pipe one promise-returning function with one primitive-returning function.', async function() {
       const h = pipeP(
         f,
         e
