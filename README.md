@@ -40,3 +40,6 @@ await getJobByUserId(10);
 ```
 
 Each function accepts any number of functions that return either a value or an object with a method that matches the `bindKey` parameter given.
+
+## License
+WTFPL
