@@ -1,6 +1,6 @@
 {
   "name": "fish-operator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Kleisli composition in JS",
   "main": "index.js",
   "scripts": {
